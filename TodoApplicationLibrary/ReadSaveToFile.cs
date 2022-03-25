@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+
+namespace TodoApplicationLibrary
+{
+    internal class ReadSaveToFile 
+    {
+        private readonly string FILE_NAME = "../../../../Data/TaskLists.bin";
+
+        internal void SaveTasks(List<TaskList> taskLists)
+        {
+            using(FileStream dataStream = new FileStream(FILE_NAME, FileMode.OpenOrCreate))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                try
+                {
+                    formatter.Serialize(dataStream, taskLists);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
+        internal List<TaskList> ReadTasks()
+        {
+            if (!File.Exists(FILE_NAME)) return null;
+                
+            using (FileStream dataStream = new FileStream(FILE_NAME, FileMode.Open))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                try
+                {
+                    return (List<TaskList>)formatter.Deserialize(dataStream);
+                } catch (Exception ex)
+                {
+                    return null;
+                }
+
+            }
+        }
+
+
+    }
+}
