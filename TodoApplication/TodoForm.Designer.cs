@@ -32,27 +32,27 @@
             this.leftMenuPanel = new System.Windows.Forms.Panel();
             this.taskListListPanel = new System.Windows.Forms.Panel();
             this.tasksButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.homeButton = new System.Windows.Forms.Button();
+            this.addDeleteListTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.addTaskListButton = new System.Windows.Forms.Button();
             this.deleteTaskListButton = new System.Windows.Forms.Button();
-            this.homeButton = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.logoPanel = new System.Windows.Forms.Panel();
+            this.logoTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.todoIconLabel = new System.Windows.Forms.Label();
             this.todoLabel = new System.Windows.Forms.Label();
             this.taskEditTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.taskTitleTextBox = new System.Windows.Forms.TextBox();
             this.closeRightPanelButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.taskTitleBackPanel = new System.Windows.Forms.Panel();
             this.taskCreatedDateLabel = new System.Windows.Forms.Label();
             this.taskStateButton = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.dueDateBackPanel = new System.Windows.Forms.Panel();
             this.deadlineCheckBox = new System.Windows.Forms.CheckBox();
             this.deadlineDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.noteBackPanel = new System.Windows.Forms.Panel();
             this.noteEditDateLabel = new System.Windows.Forms.Label();
             this.noteTextBox = new System.Windows.Forms.TextBox();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.taskSaveDelBackPanel = new System.Windows.Forms.Panel();
             this.deleteTaskButton = new System.Windows.Forms.Button();
             this.saveTaskButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
@@ -60,26 +60,30 @@
             this.taskListPanel = new System.Windows.Forms.Panel();
             this.addTaskTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.addTaskButton = new System.Windows.Forms.Button();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.newTaskBackPanel = new System.Windows.Forms.Panel();
             this.newTaskTextBox = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.editTaskListTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.taskListNameLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.searchButton = new System.Windows.Forms.Button();
             this.editTaskListNameButton = new System.Windows.Forms.Button();
+            this.sortTasksComboBox = new System.Windows.Forms.ComboBox();
             this.mainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.leftMenuPanel.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.addDeleteListTableLayoutPanel.SuspendLayout();
+            this.logoPanel.SuspendLayout();
+            this.logoTableLayoutPanel.SuspendLayout();
             this.taskEditTableLayoutPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.taskTitleBackPanel.SuspendLayout();
+            this.dueDateBackPanel.SuspendLayout();
+            this.noteBackPanel.SuspendLayout();
+            this.taskSaveDelBackPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.centerTableLayoutPanel.SuspendLayout();
             this.addTaskTableLayoutPanel.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.newTaskBackPanel.SuspendLayout();
+            this.editTaskListTableLayoutPanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.mainTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,9 +92,9 @@
             this.leftMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.leftMenuPanel.Controls.Add(this.taskListListPanel);
             this.leftMenuPanel.Controls.Add(this.tasksButton);
-            this.leftMenuPanel.Controls.Add(this.tableLayoutPanel2);
             this.leftMenuPanel.Controls.Add(this.homeButton);
-            this.leftMenuPanel.Controls.Add(this.panel2);
+            this.leftMenuPanel.Controls.Add(this.addDeleteListTableLayoutPanel);
+            this.leftMenuPanel.Controls.Add(this.logoPanel);
             this.leftMenuPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftMenuPanel.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.leftMenuPanel.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -107,10 +111,10 @@
             this.taskListListPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.taskListListPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.taskListListPanel.Font = new System.Drawing.Font("Arial Unicode MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.taskListListPanel.Location = new System.Drawing.Point(0, 180);
+            this.taskListListPanel.Location = new System.Drawing.Point(0, 178);
             this.taskListListPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.taskListListPanel.Name = "taskListListPanel";
-            this.taskListListPanel.Size = new System.Drawing.Size(250, 411);
+            this.taskListListPanel.Size = new System.Drawing.Size(250, 413);
             this.taskListListPanel.TabIndex = 4;
             // 
             // tasksButton
@@ -120,7 +124,7 @@
             this.tasksButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tasksButton.Font = new System.Drawing.Font("Arial Unicode MS", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tasksButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tasksButton.Location = new System.Drawing.Point(0, 132);
+            this.tasksButton.Location = new System.Drawing.Point(0, 130);
             this.tasksButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
             this.tasksButton.Name = "tasksButton";
             this.tasksButton.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -132,20 +136,39 @@
             this.tasksButton.UseVisualStyleBackColor = false;
             this.tasksButton.Click += new System.EventHandler(this.tasksButton_Click);
             // 
-            // tableLayoutPanel2
+            // homeButton
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.addTaskListButton, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.deleteTaskListButton, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 591);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(250, 43);
-            this.tableLayoutPanel2.TabIndex = 5;
+            this.homeButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.homeButton.FlatAppearance.BorderSize = 0;
+            this.homeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.homeButton.Font = new System.Drawing.Font("Arial Unicode MS", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.homeButton.ForeColor = System.Drawing.Color.Gainsboro;
+            this.homeButton.Location = new System.Drawing.Point(0, 82);
+            this.homeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
+            this.homeButton.Name = "homeButton";
+            this.homeButton.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.homeButton.Size = new System.Drawing.Size(250, 48);
+            this.homeButton.TabIndex = 7;
+            this.homeButton.TabStop = false;
+            this.homeButton.Text = "Home";
+            this.homeButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.homeButton.UseVisualStyleBackColor = false;
+            this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
+            // 
+            // addDeleteListTableLayoutPanel
+            // 
+            this.addDeleteListTableLayoutPanel.ColumnCount = 2;
+            this.addDeleteListTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.addDeleteListTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.addDeleteListTableLayoutPanel.Controls.Add(this.addTaskListButton, 0, 0);
+            this.addDeleteListTableLayoutPanel.Controls.Add(this.deleteTaskListButton, 1, 0);
+            this.addDeleteListTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.addDeleteListTableLayoutPanel.Location = new System.Drawing.Point(0, 591);
+            this.addDeleteListTableLayoutPanel.Name = "addDeleteListTableLayoutPanel";
+            this.addDeleteListTableLayoutPanel.RowCount = 1;
+            this.addDeleteListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.addDeleteListTableLayoutPanel.Size = new System.Drawing.Size(250, 43);
+            this.addDeleteListTableLayoutPanel.TabIndex = 5;
             // 
             // addTaskListButton
             // 
@@ -178,50 +201,31 @@
             this.deleteTaskListButton.UseVisualStyleBackColor = true;
             this.deleteTaskListButton.Click += new System.EventHandler(this.deleteTaskListButton_Click);
             // 
-            // homeButton
+            // logoPanel
             // 
-            this.homeButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.homeButton.FlatAppearance.BorderSize = 0;
-            this.homeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.homeButton.Font = new System.Drawing.Font("Arial Unicode MS", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.homeButton.ForeColor = System.Drawing.Color.Gainsboro;
-            this.homeButton.Location = new System.Drawing.Point(0, 82);
-            this.homeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
-            this.homeButton.Name = "homeButton";
-            this.homeButton.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.homeButton.Size = new System.Drawing.Size(250, 50);
-            this.homeButton.TabIndex = 1;
-            this.homeButton.TabStop = false;
-            this.homeButton.Text = "Home";
-            this.homeButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.homeButton.UseVisualStyleBackColor = false;
-            this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
+            this.logoPanel.Controls.Add(this.logoTableLayoutPanel);
+            this.logoPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logoPanel.Location = new System.Drawing.Point(0, 0);
+            this.logoPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.logoPanel.Name = "logoPanel";
+            this.logoPanel.Size = new System.Drawing.Size(250, 82);
+            this.logoPanel.TabIndex = 0;
             // 
-            // panel2
+            // logoTableLayoutPanel
             // 
-            this.panel2.Controls.Add(this.tableLayoutPanel1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(250, 82);
-            this.panel2.TabIndex = 0;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.Controls.Add(this.todoIconLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.todoLabel, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(250, 82);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.logoTableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.logoTableLayoutPanel.ColumnCount = 2;
+            this.logoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.logoTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.logoTableLayoutPanel.Controls.Add(this.todoIconLabel, 0, 0);
+            this.logoTableLayoutPanel.Controls.Add(this.todoLabel, 1, 0);
+            this.logoTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logoTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.logoTableLayoutPanel.Name = "logoTableLayoutPanel";
+            this.logoTableLayoutPanel.RowCount = 1;
+            this.logoTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.logoTableLayoutPanel.Size = new System.Drawing.Size(250, 82);
+            this.logoTableLayoutPanel.TabIndex = 0;
             // 
             // todoIconLabel
             // 
@@ -250,10 +254,10 @@
             this.taskEditTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.taskEditTableLayoutPanel.Controls.Add(this.taskTitleTextBox, 0, 1);
             this.taskEditTableLayoutPanel.Controls.Add(this.closeRightPanelButton, 0, 0);
-            this.taskEditTableLayoutPanel.Controls.Add(this.panel1, 0, 2);
-            this.taskEditTableLayoutPanel.Controls.Add(this.panel3, 0, 3);
-            this.taskEditTableLayoutPanel.Controls.Add(this.panel4, 0, 4);
-            this.taskEditTableLayoutPanel.Controls.Add(this.panel5, 0, 5);
+            this.taskEditTableLayoutPanel.Controls.Add(this.taskTitleBackPanel, 0, 2);
+            this.taskEditTableLayoutPanel.Controls.Add(this.dueDateBackPanel, 0, 3);
+            this.taskEditTableLayoutPanel.Controls.Add(this.noteBackPanel, 0, 4);
+            this.taskEditTableLayoutPanel.Controls.Add(this.taskSaveDelBackPanel, 0, 5);
             this.taskEditTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.taskEditTableLayoutPanel.Font = new System.Drawing.Font("Arial Unicode MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.taskEditTableLayoutPanel.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -299,16 +303,16 @@
             this.closeRightPanelButton.UseVisualStyleBackColor = true;
             this.closeRightPanelButton.Click += new System.EventHandler(this.closeRightPanelButton_Click);
             // 
-            // panel1
+            // taskTitleBackPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-            this.panel1.Controls.Add(this.taskCreatedDateLabel);
-            this.panel1.Controls.Add(this.taskStateButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(7, 138);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 53);
-            this.panel1.TabIndex = 2;
+            this.taskTitleBackPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
+            this.taskTitleBackPanel.Controls.Add(this.taskCreatedDateLabel);
+            this.taskTitleBackPanel.Controls.Add(this.taskStateButton);
+            this.taskTitleBackPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskTitleBackPanel.Location = new System.Drawing.Point(7, 138);
+            this.taskTitleBackPanel.Name = "taskTitleBackPanel";
+            this.taskTitleBackPanel.Size = new System.Drawing.Size(294, 53);
+            this.taskTitleBackPanel.TabIndex = 2;
             // 
             // taskCreatedDateLabel
             // 
@@ -334,18 +338,18 @@
             this.taskStateButton.UseVisualStyleBackColor = true;
             this.taskStateButton.Click += new System.EventHandler(this.doneButton_Click);
             // 
-            // panel3
+            // dueDateBackPanel
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-            this.panel3.Controls.Add(this.deadlineCheckBox);
-            this.panel3.Controls.Add(this.deadlineDateTimePicker);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panel3.Location = new System.Drawing.Point(7, 197);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(8);
-            this.panel3.Size = new System.Drawing.Size(294, 85);
-            this.panel3.TabIndex = 3;
+            this.dueDateBackPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
+            this.dueDateBackPanel.Controls.Add(this.deadlineCheckBox);
+            this.dueDateBackPanel.Controls.Add(this.deadlineDateTimePicker);
+            this.dueDateBackPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dueDateBackPanel.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dueDateBackPanel.Location = new System.Drawing.Point(7, 197);
+            this.dueDateBackPanel.Name = "dueDateBackPanel";
+            this.dueDateBackPanel.Padding = new System.Windows.Forms.Padding(8);
+            this.dueDateBackPanel.Size = new System.Drawing.Size(294, 85);
+            this.dueDateBackPanel.TabIndex = 3;
             // 
             // deadlineCheckBox
             // 
@@ -374,17 +378,17 @@
             this.deadlineDateTimePicker.Size = new System.Drawing.Size(278, 30);
             this.deadlineDateTimePicker.TabIndex = 1;
             // 
-            // panel4
+            // noteBackPanel
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-            this.panel4.Controls.Add(this.noteEditDateLabel);
-            this.panel4.Controls.Add(this.noteTextBox);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(7, 288);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(10);
-            this.panel4.Size = new System.Drawing.Size(294, 297);
-            this.panel4.TabIndex = 4;
+            this.noteBackPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
+            this.noteBackPanel.Controls.Add(this.noteEditDateLabel);
+            this.noteBackPanel.Controls.Add(this.noteTextBox);
+            this.noteBackPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.noteBackPanel.Location = new System.Drawing.Point(7, 288);
+            this.noteBackPanel.Name = "noteBackPanel";
+            this.noteBackPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.noteBackPanel.Size = new System.Drawing.Size(294, 297);
+            this.noteBackPanel.TabIndex = 4;
             // 
             // noteEditDateLabel
             // 
@@ -410,16 +414,16 @@
             this.noteTextBox.Size = new System.Drawing.Size(274, 246);
             this.noteTextBox.TabIndex = 0;
             // 
-            // panel5
+            // taskSaveDelBackPanel
             // 
-            this.panel5.Controls.Add(this.deleteTaskButton);
-            this.panel5.Controls.Add(this.saveTaskButton);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(7, 591);
-            this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(30, 0, 30, 0);
-            this.panel5.Size = new System.Drawing.Size(294, 36);
-            this.panel5.TabIndex = 5;
+            this.taskSaveDelBackPanel.Controls.Add(this.deleteTaskButton);
+            this.taskSaveDelBackPanel.Controls.Add(this.saveTaskButton);
+            this.taskSaveDelBackPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskSaveDelBackPanel.Location = new System.Drawing.Point(7, 591);
+            this.taskSaveDelBackPanel.Name = "taskSaveDelBackPanel";
+            this.taskSaveDelBackPanel.Padding = new System.Windows.Forms.Padding(30, 0, 30, 0);
+            this.taskSaveDelBackPanel.Size = new System.Drawing.Size(294, 36);
+            this.taskSaveDelBackPanel.TabIndex = 5;
             // 
             // deleteTaskButton
             // 
@@ -472,7 +476,7 @@
             this.centerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.centerTableLayoutPanel.Controls.Add(this.taskListPanel, 0, 1);
             this.centerTableLayoutPanel.Controls.Add(this.addTaskTableLayoutPanel, 0, 2);
-            this.centerTableLayoutPanel.Controls.Add(this.tableLayoutPanel3, 0, 0);
+            this.centerTableLayoutPanel.Controls.Add(this.editTaskListTableLayoutPanel, 0, 0);
             this.centerTableLayoutPanel.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.centerTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.centerTableLayoutPanel.MinimumSize = new System.Drawing.Size(500, 0);
@@ -505,7 +509,7 @@
             this.addTaskTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.addTaskTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.addTaskTableLayoutPanel.Controls.Add(this.addTaskButton, 1, 0);
-            this.addTaskTableLayoutPanel.Controls.Add(this.panel6, 0, 0);
+            this.addTaskTableLayoutPanel.Controls.Add(this.newTaskBackPanel, 0, 0);
             this.addTaskTableLayoutPanel.Location = new System.Drawing.Point(18, 550);
             this.addTaskTableLayoutPanel.Margin = new System.Windows.Forms.Padding(18, 10, 25, 10);
             this.addTaskTableLayoutPanel.Name = "addTaskTableLayoutPanel";
@@ -529,16 +533,16 @@
             this.addTaskButton.UseVisualStyleBackColor = true;
             this.addTaskButton.Click += new System.EventHandler(this.addTaskButton_Click);
             // 
-            // panel6
+            // newTaskBackPanel
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-            this.panel6.Controls.Add(this.newTaskTextBox);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(3, 3);
-            this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(10);
-            this.panel6.Size = new System.Drawing.Size(538, 64);
-            this.panel6.TabIndex = 2;
+            this.newTaskBackPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
+            this.newTaskBackPanel.Controls.Add(this.newTaskTextBox);
+            this.newTaskBackPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.newTaskBackPanel.Location = new System.Drawing.Point(3, 3);
+            this.newTaskBackPanel.Name = "newTaskBackPanel";
+            this.newTaskBackPanel.Padding = new System.Windows.Forms.Padding(10);
+            this.newTaskBackPanel.Size = new System.Drawing.Size(538, 64);
+            this.newTaskBackPanel.TabIndex = 2;
             // 
             // newTaskTextBox
             // 
@@ -553,23 +557,22 @@
             this.newTaskTextBox.Size = new System.Drawing.Size(518, 44);
             this.newTaskTextBox.TabIndex = 0;
             // 
-            // tableLayoutPanel3
+            // editTaskListTableLayoutPanel
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.taskListNameLabel, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.editTaskListNameButton, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.Padding = new System.Windows.Forms.Padding(0, 0, 25, 0);
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(651, 54);
-            this.tableLayoutPanel3.TabIndex = 3;
+            this.editTaskListTableLayoutPanel.ColumnCount = 2;
+            this.editTaskListTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editTaskListTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editTaskListTableLayoutPanel.Controls.Add(this.taskListNameLabel, 0, 0);
+            this.editTaskListTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 1, 0);
+            this.editTaskListTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editTaskListTableLayoutPanel.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.editTaskListTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.editTaskListTableLayoutPanel.Name = "editTaskListTableLayoutPanel";
+            this.editTaskListTableLayoutPanel.RowCount = 1;
+            this.editTaskListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.editTaskListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.editTaskListTableLayoutPanel.Size = new System.Drawing.Size(651, 54);
+            this.editTaskListTableLayoutPanel.TabIndex = 3;
             // 
             // taskListNameLabel
             // 
@@ -583,18 +586,62 @@
             this.taskListNameLabel.TabIndex = 0;
             this.taskListNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.Controls.Add(this.searchButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.editTaskListNameButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.sortTasksComboBox, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(328, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 48);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // searchButton
+            // 
+            this.searchButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchButton.FlatAppearance.BorderSize = 0;
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.ForeColor = System.Drawing.Color.Wheat;
+            this.searchButton.Image = ((System.Drawing.Image)(resources.GetObject("searchButton.Image")));
+            this.searchButton.Location = new System.Drawing.Point(203, 3);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(54, 42);
+            this.searchButton.TabIndex = 3;
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
             // editTaskListNameButton
             // 
-            this.editTaskListNameButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.editTaskListNameButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.editTaskListNameButton.FlatAppearance.BorderSize = 0;
             this.editTaskListNameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editTaskListNameButton.Image = ((System.Drawing.Image)(resources.GetObject("editTaskListNameButton.Image")));
-            this.editTaskListNameButton.Location = new System.Drawing.Point(575, 3);
+            this.editTaskListNameButton.Location = new System.Drawing.Point(263, 3);
             this.editTaskListNameButton.Name = "editTaskListNameButton";
-            this.editTaskListNameButton.Size = new System.Drawing.Size(48, 48);
+            this.editTaskListNameButton.Size = new System.Drawing.Size(54, 42);
             this.editTaskListNameButton.TabIndex = 1;
             this.editTaskListNameButton.UseVisualStyleBackColor = true;
             this.editTaskListNameButton.Click += new System.EventHandler(this.editTaskListNameButton_Click);
+            // 
+            // sortTasksComboBox
+            // 
+            this.sortTasksComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.sortTasksComboBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sortTasksComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortTasksComboBox.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.sortTasksComboBox.FormattingEnabled = true;
+            this.sortTasksComboBox.Location = new System.Drawing.Point(39, 10);
+            this.sortTasksComboBox.Margin = new System.Windows.Forms.Padding(3, 10, 10, 3);
+            this.sortTasksComboBox.Name = "sortTasksComboBox";
+            this.sortTasksComboBox.Size = new System.Drawing.Size(151, 28);
+            this.sortTasksComboBox.TabIndex = 2;
             // 
             // mainTableLayoutPanel
             // 
@@ -627,24 +674,25 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Todo";
             this.leftMenuPanel.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.addDeleteListTableLayoutPanel.ResumeLayout(false);
+            this.logoPanel.ResumeLayout(false);
+            this.logoTableLayoutPanel.ResumeLayout(false);
             this.taskEditTableLayoutPanel.ResumeLayout(false);
             this.taskEditTableLayoutPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
+            this.taskTitleBackPanel.ResumeLayout(false);
+            this.dueDateBackPanel.ResumeLayout(false);
+            this.dueDateBackPanel.PerformLayout();
+            this.noteBackPanel.ResumeLayout(false);
+            this.noteBackPanel.PerformLayout();
+            this.taskSaveDelBackPanel.ResumeLayout(false);
             this.mainPanel.ResumeLayout(false);
             this.centerTableLayoutPanel.ResumeLayout(false);
             this.addTaskTableLayoutPanel.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.newTaskBackPanel.ResumeLayout(false);
+            this.newTaskBackPanel.PerformLayout();
+            this.editTaskListTableLayoutPanel.ResumeLayout(false);
+            this.editTaskListTableLayoutPanel.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.mainTableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -653,7 +701,6 @@
         #endregion
 
         private Panel leftMenuPanel;
-        private Button homeButton;
         private TableLayoutPanel taskEditTableLayoutPanel;
         private TextBox taskTitleTextBox;
         private Panel mainPanel;
@@ -661,33 +708,37 @@
         private Panel taskListListPanel;
         private Panel taskListPanel;
         private Button closeRightPanelButton;
-        private Panel panel1;
-        private Panel panel3;
+        private Panel taskTitleBackPanel;
+        private Panel dueDateBackPanel;
         private DateTimePicker deadlineDateTimePicker;
         private CheckBox deadlineCheckBox;
-        private Panel panel4;
+        private Panel noteBackPanel;
         private Button taskStateButton;
         private Label taskCreatedDateLabel;
         private Label noteEditDateLabel;
         private TextBox noteTextBox;
-        private Panel panel5;
+        private Panel taskSaveDelBackPanel;
         private Button deleteTaskButton;
         private Button saveTaskButton;
         private TableLayoutPanel addTaskTableLayoutPanel;
         private TextBox newTaskTextBox;
         private Button addTaskButton;
-        private Panel panel6;
+        private Panel newTaskBackPanel;
         private TableLayoutPanel mainTableLayoutPanel;
         private TableLayoutPanel centerTableLayoutPanel;
-        private Panel panel2;
-        private TableLayoutPanel tableLayoutPanel1;
+        private Panel logoPanel;
+        private TableLayoutPanel logoTableLayoutPanel;
         private Label todoIconLabel;
         private Label todoLabel;
-        private TableLayoutPanel tableLayoutPanel2;
+        private TableLayoutPanel addDeleteListTableLayoutPanel;
         private Button addTaskListButton;
         private Button deleteTaskListButton;
         private Button tasksButton;
-        private TableLayoutPanel tableLayoutPanel3;
+        private TableLayoutPanel editTaskListTableLayoutPanel;
         private Button editTaskListNameButton;
+        private TableLayoutPanel tableLayoutPanel1;
+        private ComboBox sortTasksComboBox;
+        private Button homeButton;
+        private Button searchButton;
     }
 }

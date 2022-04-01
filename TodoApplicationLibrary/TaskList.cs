@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TodoApplicationLibrary
 {
+
+    public delegate bool CompareTasksCallback(Task? task1, Task? task2);
+
     [Serializable]
     public class TaskList
     {
@@ -25,6 +28,11 @@ namespace TodoApplicationLibrary
 
                 return tasks[index];
             }
+
+            set
+            {
+                tasks[index] = value;
+            }
         }
         internal TaskList(string name, int id)
         {
@@ -33,11 +41,43 @@ namespace TodoApplicationLibrary
             tasks = new List<Task>();
         }
 
+        public List<Task> SearchTask(string text)
+        {
+            List<Task> searchTasks = new List<Task>();
+
+            tasks.ForEach(t =>
+            {
+                if (t.Title.ToLower().StartsWith(text.ToLower()))
+                {
+                    searchTasks.Add(t);
+                }
+            });
+
+            return searchTasks;
+        }
+
         internal Task CreateTask(int id, string title, DateTime? dueDate, string? noteText)
         {
             Task newTask = new Task(id, title, TaskState.INCOMPLETE, dueDate, (noteText == null || noteText.Length < 1) ? null : new Note(noteText));
             tasks.Add(newTask);
             return newTask;
+        }
+
+        internal void Sort(CompareTasksCallback callback)
+        {
+            Task tmp;
+            for (int i = 0; i < Count; i++)
+            {
+                for (int j = 0; j < Count - 1; j++)
+                {
+                    if (callback(this[j], this[j + 1]))
+                    {
+                        tmp = this[j + 1];
+                        this[j + 1] = this[j];
+                        this[j] = tmp;
+                    }
+                }
+            }
         }
 
         internal void DeleteTask(int taskId)
@@ -51,6 +91,11 @@ namespace TodoApplicationLibrary
                 }
             }
             throw new Exception("Task with id: " + taskId + " does not exist!");
+        }
+
+        internal void AddTask(Task task)
+        {
+            tasks.Add(task);
         }
 
         internal bool isContains(int id)

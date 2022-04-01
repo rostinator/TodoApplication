@@ -20,14 +20,8 @@ namespace TodoApplicationLibrary
             {
                 BinaryFormatter formatter = new BinaryFormatter();
 
-                try
-                {
-                    formatter.Serialize(dataStream, taskLists);
-                }
-                catch (Exception ex)
-                {
-
-                }
+                formatter.Serialize(dataStream, taskLists);
+                
             }
         }
 
@@ -39,13 +33,7 @@ namespace TodoApplicationLibrary
             {
                 BinaryFormatter formatter = new BinaryFormatter();
 
-                try
-                {
-                    return (List<TaskList>)formatter.Deserialize(dataStream);
-                } catch (Exception ex)
-                {
-                    return null;
-                }
+                return (List<TaskList>)formatter.Deserialize(dataStream);
 
             }
         }

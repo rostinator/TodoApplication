@@ -34,13 +34,53 @@ namespace TodoApplication
 
             editTaskListNameButton.Visible = false;
 
-            taskListNameLabel.Text = "All tasks";
+            foreach (TaskOrder order in TaskOrderInfo.Items)
+            {
+                sortTasksComboBox.Items.Add(TaskOrderInfo.GetName(order));
+            }
+
+            sortTasksComboBox.SelectedIndexChanged += new EventHandler(SortTasks);
+
 
             HideRightTaskEditPanel();
 
             UpdateTaskListPanel();
 
             EnableScrolling();
+
+            ShowHomePage();
+        }
+
+        private void SortTasks(object? sender, EventArgs e)
+        {
+            if(selectedTaskList != null)
+            {
+                TaskOrder selectedOrder = ReadSelectedTaskOrder();
+                if(selectedOrder != TaskOrder.None)
+                {
+                    taskManager.SortTaskList(selectedTaskList, selectedOrder);
+                }
+                ShowTaskList(selectedTaskList);
+            }
+
+        }
+
+        private TaskOrder ReadSelectedTaskOrder()
+        {
+            switch (sortTasksComboBox.SelectedIndex)
+            {
+                case 0:
+                    return TaskOrder.None;
+                case 1:
+                    return TaskOrder.CreateDate;
+                case 2:
+                    return TaskOrder.DueDate;
+                case 3:
+                    return TaskOrder.Status;
+                case 4:
+                    return TaskOrder.Alphabed;
+                default: return TaskOrder.None;
+            }
         }
 
         private void EnableScrolling()
@@ -87,6 +127,7 @@ namespace TodoApplication
 
             taskEditTableLayoutPanel.Visible = false;
 
+            ShowTaskList(taskManager.ReadAllTasks());
         }
 
         private void UpdateTaskListPanel()
@@ -128,6 +169,7 @@ namespace TodoApplication
 
 
             ShowTaskList(taskListButtons[btn]);
+            sortTasksComboBox.SelectedIndex = 0;
 
             editTaskListNameButton.Visible = true;
 
@@ -150,7 +192,17 @@ namespace TodoApplication
             }
         }
 
-        private Panel CreateTaskLabel(Task? task)
+        private void ShowSearchList(List<Task> tasks)
+        {
+            taskLabels.Clear();
+            taskListPanel.Controls.Clear();
+            for (int i = 0; i < tasks.Count; i++)
+            {
+                taskListPanel.Controls.Add(CreateTaskLabel(tasks[i]));
+            }
+        }
+
+        private Panel CreateTaskLabel(Task task)
         { 
             TableLayoutPanel panel = new TableLayoutPanel();
             panel.ColumnCount = 2;
@@ -179,7 +231,9 @@ namespace TodoApplication
             lbl.TextAlign = ContentAlignment.MiddleLeft;
             lbl.Padding = new Padding(15,0,0,0);
             lbl.BackColor = Color.FromArgb(38,38,38);
-            lbl.Text = task?.Title;
+            string text = task.Title.Replace('\n', ' ');
+            text = text.Replace('\r', ' ');
+            lbl.Text = text;
             lbl.Click += new EventHandler(taskLabel_Click);
 
             taskLabels[lbl] = task;
@@ -189,17 +243,22 @@ namespace TodoApplication
 
         private void doneLabelButton_Click(object? sender, EventArgs e)
         {
-            Button button = sender as Button;
+            Button? button = sender as Button;
             if (button != null)
             {
                 button.Image = button.Image == doneImage ? incompletedImage : doneImage;
                 TableLayoutPanel? panel = button.Parent as TableLayoutPanel;
                 if (panel != null) {
-                    Label l = panel.GetControlFromPosition(1, 0) as Label;
+                    Label? l = panel.GetControlFromPosition(1, 0) as Label;
                     if(l!= null)
                     {
                         taskLabels[l].State = button.Image == doneImage ? TaskState.DONE : TaskState.INCOMPLETE;
-                        taskManager.Save();
+                        SaveData();
+
+                        if (taskLabels[l] == editedTask)
+                        {
+                            taskStateButton.Image = editedTask?.State == TaskState.DONE ? doneImage : incompletedImage;
+                        }
                     }
                 }
             }
@@ -207,7 +266,7 @@ namespace TodoApplication
 
         private void taskLabel_Click(object? sender, EventArgs e)
         {
-            Label label = sender as Label;
+            Label? label = sender as Label;
 
             if(label == null) return;
 
@@ -242,7 +301,29 @@ namespace TodoApplication
             {
                 noteTextBox.Text = editedTask.Note.Text;
                 noteEditDateLabel.Text = "Edited: " + editedTask.Note.EditDate.ToString();
+            } else
+            {
+                noteTextBox.Text = "";
+                noteEditDateLabel.Text = "";
             }
+        }
+
+        private void SaveData()
+        {
+            try
+            {
+                taskManager.Save();
+            }catch(TaskManagerException ex)
+            {
+                ShowInfoDialog(ex.Message);
+            }
+        }
+
+        private void ShowInfoDialog(String msg)
+        {
+            InfoDialogForm infoDialog = new InfoDialogForm();
+            infoDialog.EditInfoMessage(msg);
+            infoDialog.ShowDialog();
         }
 
         private void closeRightPanelButton_Click(object sender, EventArgs e)
@@ -309,18 +390,18 @@ namespace TodoApplication
                     }
 
                 Label label = taskLabels.FirstOrDefault(x => x.Value == editedTask).Key;
-                TableLayoutPanel panel = label.Parent as TableLayoutPanel;
+                TableLayoutPanel? panel = label.Parent as TableLayoutPanel;
                 if(panel != null)
                 {
-                    Button b = panel.GetControlFromPosition(0, 0) as Button;
+                    Button? b = panel.GetControlFromPosition(0, 0) as Button;
                     if(b != null)
                     {
                         b.Image = editedTask.State == TaskState.DONE ? doneImage : incompletedImage;
                     }
                 }
-                label.Text = editedTask.Title;
+                label.Text = editedTask?.Title?.Replace('\n', ' ');
 
-                taskManager.Save();
+                SaveData();
             }
 
 
@@ -334,14 +415,20 @@ namespace TodoApplication
             d.ShowDialog();
 
             if(d.DialogResult.Equals(DialogResult.OK)) {
-                taskManager.DeleteTask(selectedTaskList, editedTask.Id);
+                try
+                {
+                    taskManager.DeleteTask(selectedTaskList, editedTask.Id);
 
-                Label label = taskLabels.FirstOrDefault(x => x.Value == editedTask).Key;
-                Panel panel = label.Parent as Panel;
-                if (panel != null) { taskListPanel.Controls.Remove(panel); }
+                    Label label = taskLabels.FirstOrDefault(x => x.Value == editedTask).Key;
+                    Panel? panel = label.Parent as Panel;
+                    if (panel != null) { taskListPanel.Controls.Remove(panel); }
 
-                editedTask = null;
-                HideRightTaskEditPanel();
+                    editedTask = null;
+                    HideRightTaskEditPanel();
+                } catch (TaskManagerException ex)
+                {
+                    ShowInfoDialog(ex.Message);
+                }
             }
         }
 
@@ -349,12 +436,25 @@ namespace TodoApplication
         {
             if(newTaskTextBox.Text == null || newTaskTextBox.Text.Length < 1 || selectedTaskList == null) return;
 
-            editedTask = taskManager.CreateTask(selectedTaskList, newTaskTextBox.Text, null, null);
-            newTaskTextBox.Text = "";
+            try
+            {
+                if(selectedTaskList.Id < 1)
+                {
+                    editedTask = taskManager.CreateTask(taskManager.FindDefaultTaskList(), newTaskTextBox.Text, null, null);
+                } else
+                {
+                    editedTask = taskManager.CreateTask(selectedTaskList, newTaskTextBox.Text, null, null);
+                }
 
-            taskListPanel.Controls.Add(CreateTaskLabel(editedTask));
+                newTaskTextBox.Text = "";
 
-            ParseDataToTaskPanel();
+                taskListPanel.Controls.Add(CreateTaskLabel(editedTask));
+
+                ParseDataToTaskPanel();
+            } catch(TaskManagerException ex)
+            {
+                ShowInfoDialog(ex.Message);
+            }
         }
 
         private void addTaskListButton_Click(object sender, EventArgs e)
@@ -366,36 +466,41 @@ namespace TodoApplication
                 string taskListName = taskListForm.ReadTaskListName();
                 if(taskListName != null && taskListName.Length > 0)
                 {
-                    selectedTaskList = taskManager.CreateTaskList(taskListName);
-                    taskListListPanel.Controls.Add(CreateTaskListBtn(selectedTaskList));
-                    HideRightTaskEditPanel();
-                    ShowTaskList(selectedTaskList);
+                    try
+                    {
+                        selectedTaskList = taskManager.CreateTaskList(taskListName);
+                        taskListListPanel.Controls.Add(CreateTaskListBtn(selectedTaskList));
+                        HideRightTaskEditPanel();
+                        ShowTaskList(selectedTaskList);
+                    } catch(TaskManagerException ex)
+                    {
+                        ShowInfoDialog(ex.Message);
+                    }
                 }
             }
         }
 
         private void deleteTaskListButton_Click(object sender, EventArgs e)
         {
-            if (selectedTaskList == null || selectedTaskList == taskManager.FindDefaultTaskList()) return;
+            if (selectedTaskList == null || selectedTaskList == taskManager.FindDefaultTaskList() || selectedTaskList.Id < 1) return;
 
             DeleteDialogForm deleteDialogForm = new DeleteDialogForm();
             deleteDialogForm.ShowDialog();
             if(deleteDialogForm.DialogResult.Equals(DialogResult.OK))
             {
-                taskManager.DeleteTaskList(selectedTaskList.Id);
-                Button button = taskListButtons.FirstOrDefault(x => x.Value == selectedTaskList).Key;
-                if (button != null) { taskListListPanel.Controls.Remove(button); }
+                try
+                {
+                    taskManager.DeleteTaskList(selectedTaskList.Id);
+                    Button button = taskListButtons.FirstOrDefault(x => x.Value == selectedTaskList).Key;
+                    if (button != null) { taskListListPanel.Controls.Remove(button); }
 
-                selectedTaskList = null;
+                    selectedTaskList = null;
+                } catch(TaskManagerException ex)
+                {
+                    ShowInfoDialog(ex.Message);
+                }
                 ShowHomePage();
             }
-        }
-
-        private void homeButton_Click(object sender, EventArgs e)
-        {
-            ShowHomePage();
-            HideRightTaskEditPanel();
-            editTaskListNameButton.Visible = false; 
         }
 
         private void tasksButton_Click(object sender, EventArgs e)
@@ -421,7 +526,31 @@ namespace TodoApplication
                     Button button = taskListButtons.FirstOrDefault(x => x.Value == selectedTaskList).Key;
                     if (button != null) { button.Text = selectedTaskList.Name; }
                     taskListNameLabel.Text = selectedTaskList.Name;
-                    taskManager.Save();
+                    SaveData();
+                }
+            }
+        }
+
+        private void homeButton_Click(object sender, EventArgs e)
+        {
+            ShowHomePage();
+            HideRightTaskEditPanel();
+            editTaskListNameButton.Visible = false;
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            if(selectedTaskList == null) return;
+
+            SearchDialogForm searchDialogForm = new SearchDialogForm();
+            searchDialogForm.ShowDialog();
+            if (searchDialogForm.DialogResult.Equals(DialogResult.OK))
+            {
+                String term = searchDialogForm.ReadSearchText();
+                if(term != null && term.Length > 0)
+                {
+                    List<Task> terms = selectedTaskList.SearchTask(searchDialogForm.ReadSearchText());
+                    ShowSearchList(terms);
                 }
             }
         }

@@ -37,7 +37,14 @@ namespace TodoApplicationLibrary
         {
             readSaveToFile = new ReadSaveToFile();
 
-            taskLists = readSaveToFile.ReadTasks();
+            try
+            {
+                taskLists = readSaveToFile.ReadTasks();
+            }
+            catch (Exception ex)
+            {
+
+            }
             if (taskLists == null)
             {
                 taskLists = new List<TaskList>();
@@ -66,16 +73,18 @@ namespace TodoApplicationLibrary
                 if (task.Id == taskListsId)
                 {
                     taskLists.Remove(task);
+                    Save();
                     return;
                 }
             }
-            throw new Exception("Task with id: " + taskListsId + " does not exist!");
-            Save();
+            throw new TaskManagerException("Task with id: " + taskListsId + " does not exist!");
         }
 
-        public TaskList? FindTaskList(int taskListsId)
+        public TaskList FindTaskList(int taskListsId)
         {
-            return taskLists.Find(t => t.Id == taskListsId);
+            TaskList? taskList = taskLists.Find(t => t.Id == taskListsId);
+            if (taskList is null) throw new TaskManagerException("Failed to find task with id: " + taskListsId);
+            return taskList;
         }
 
         public TaskList? FindTaskList(string taskListsName)
@@ -83,28 +92,77 @@ namespace TodoApplicationLibrary
             return taskLists.Find(t => t.Name == taskListsName);
         }
 
+        public TaskList ReadAllTasks()
+        {
+            TaskList allTasks = new TaskList("All Tasks", -1);
+            taskLists.ForEach(t =>
+            {
+                for (int i = 0; i < t.Count; i++)
+                {
+                    allTasks.AddTask(t[i]);
+                }
+            });
+
+            return allTasks;
+        }
+
         public void Save()
         {
-            readSaveToFile.SaveTasks(taskLists);
+            try
+            {
+                readSaveToFile.SaveTasks(taskLists);
+            } catch (Exception ex)
+            {
+                throw new TaskManagerException("Failed to save tasks!");
+            }
         }
 
         public Task? CreateTask(TaskList list, string title, DateTime? dueDate, string? noteText)
         {
-            if (list == null) return null;
+            if (list == null) throw new TaskManagerException("Failed to create new task");
 
-            return list.CreateTask(++maxTaskId, title, dueDate, noteText);
+            Task t = list.CreateTask(++maxTaskId, title, dueDate, noteText);
             Save();
+            return t;
         }
 
         public void DeleteTask(TaskList list, int taskId)
         {
-            if (list == null) return;
-            list.DeleteTask(taskId);
-            Save();
+            if (list == null) throw new TaskManagerException("Failed delete task: " + taskId);
+            if(list.isContains(taskId))
+            {
+                list.DeleteTask(taskId);
+                Save();
+            } else
+            {
+                throw new TaskManagerException("Failed delete task: invalid id");
+            }
         }
 
         public TaskList FindDefaultTaskList() {
             return defaultTaskList;
+        }
+
+        public void SortTaskList(TaskList taskList, TaskOrder taskOrder)
+        {
+            switch(taskOrder) {
+                case TaskOrder.CreateDate:
+                    taskList.Sort(SortTaskByCreateDate);
+                    break;
+                case TaskOrder.DueDate:
+                    taskList.Sort(SortTaskByDueDate);
+                    break;
+                case TaskOrder.Status:
+                    taskList.Sort(SortTaskByStatus);
+                    break;
+
+                case TaskOrder.Alphabed:
+                    taskList.Sort(SortTaskByName);
+                    break;
+                default:
+                    taskList.Sort(SortTaskByCreateDate);
+                    break;
+            }
         }
 
         private void FindMaxIds()
@@ -124,6 +182,31 @@ namespace TodoApplicationLibrary
                     }
                 }
             });
+        }
+
+        private static bool SortTaskByCreateDate(Task? task1, Task? task2)
+        {
+            return task1?.CreateDate > task2?.CreateDate;
+        }
+
+        private static bool SortTaskByDueDate(Task? task1, Task? task2)
+        {
+            if(task1?.DueDate == null) return false;
+            if (task2?.DueDate == null) return true;
+            return task1?.DueDate > task2?.DueDate;
+        }
+
+        private static bool SortTaskByStatus(Task? task1, Task? task2)
+        {
+            if(task1.State == TaskState.DONE && task2.State == TaskState.INCOMPLETE)
+            {
+                return true;
+            }
+            return false;
+        }
+        private static bool SortTaskByName(Task? task1, Task? task2)
+        {
+            return task1?.Title.CompareTo(task2?.Title) < 0;
         }
     }
 }
