@@ -18,16 +18,31 @@ namespace TodoApplicationLibrary
 
         public DateTime? DueDate { get; set; }
 
+        public List<TaskLabel> Labels { get; set; }
+
         public Note? Note { get; set; }
 
-        public Task(int id, string title, TaskState state, DateTime? dueDate, Note? note)
+        public Task(int id, string title, TaskState state, DateTime? dueDate, List<TaskLabel>? labels, Note? note)
         {
             Id = id;
             Title = title;
             State = state;
             DueDate = dueDate;
             Note = note;
-            CreateDate = TaskManager.TimeZone.ToLocalTime(DateTime.Now); ;
+            Labels = labels ?? new List<TaskLabel>();
+            CreateDate = TimeZone.CurrentTimeZone.ToLocalTime(DateTime.Now); ;
         }
+
+        public void AddTaskLabel(TaskLabel taskLabel)
+        {
+            if (Labels == null) Labels = new();
+            if (!Labels.Contains(taskLabel)) Labels.Add(taskLabel);
+        }
+
+        public void RemoveLabel(TaskLabel taskLabel)
+        {
+            Labels.Remove(taskLabel);
+        }
+
     }
 }

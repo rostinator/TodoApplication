@@ -43,7 +43,7 @@ namespace TodoApplicationLibrary
 
         public List<Task> SearchTask(string text)
         {
-            List<Task> searchTasks = new List<Task>();
+            List<Task> searchTasks = new();
 
             tasks.ForEach(t =>
             {
@@ -56,16 +56,16 @@ namespace TodoApplicationLibrary
             return searchTasks;
         }
 
-        internal Task CreateTask(int id, string title, DateTime? dueDate, string? noteText)
+        internal Task CreateTask(int id, string title, DateTime? dueDate,List<TaskLabel>? labels, string? noteText)
         {
-            Task newTask = new Task(id, title, TaskState.INCOMPLETE, dueDate, (noteText == null || noteText.Length < 1) ? null : new Note(noteText));
+            Task newTask = new(id, title, TaskState.INCOMPLETE, dueDate, labels, (noteText == null || noteText.Length < 1) ? null : new Note(noteText));
             tasks.Add(newTask);
             return newTask;
         }
 
         internal void Sort(CompareTasksCallback callback)
         {
-            Task tmp;
+            Task? tmp;
             for (int i = 0; i < Count; i++)
             {
                 for (int j = 0; j < Count - 1; j++)
@@ -98,7 +98,7 @@ namespace TodoApplicationLibrary
             tasks.Add(task);
         }
 
-        internal bool isContains(int id)
+        internal bool IsContains(int id)
         {
             foreach(var task in tasks)
                 if (task.Id == id)

@@ -8,15 +8,14 @@ namespace TodoApplicationLibrary
 {
     public class TaskManager
     {
-        public static TimeZone TimeZone = TimeZone.CurrentTimeZone;
 
         private int maxTaskId;
 
-        private ReadSaveToFile readSaveToFile;
+        private readonly ReadSaveToFile readSaveToFile;
 
         private int maxTaskListId;
 
-        private TaskList defaultTaskList;
+        private TaskList? defaultTaskList;
 
         private List<TaskList> taskLists;
 
@@ -43,7 +42,7 @@ namespace TodoApplicationLibrary
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             if (taskLists == null)
             {
@@ -60,7 +59,7 @@ namespace TodoApplicationLibrary
 
         public TaskList CreateTaskList(string name)
         {
-            TaskList newTaskList = new TaskList(name, ++maxTaskListId);
+            TaskList newTaskList = new(name, ++maxTaskListId);
             taskLists.Add(newTaskList);
             Save();
             return newTaskList;
@@ -94,7 +93,7 @@ namespace TodoApplicationLibrary
 
         public TaskList ReadAllTasks()
         {
-            TaskList allTasks = new TaskList("All Tasks", -1);
+            TaskList allTasks = new("All Tasks", -1);
             taskLists.ForEach(t =>
             {
                 for (int i = 0; i < t.Count; i++)
@@ -113,15 +112,15 @@ namespace TodoApplicationLibrary
                 readSaveToFile.SaveTasks(taskLists);
             } catch (Exception ex)
             {
-                throw new TaskManagerException("Failed to save tasks!");
+                throw new TaskManagerException("Failed to save tasks! + " + ex.Message);
             }
         }
 
-        public Task? CreateTask(TaskList list, string title, DateTime? dueDate, string? noteText)
+        public Task? CreateTask(TaskList? list, string title, DateTime? dueDate, List<TaskLabel>? labels, string? noteText)
         {
             if (list == null) throw new TaskManagerException("Failed to create new task");
 
-            Task t = list.CreateTask(++maxTaskId, title, dueDate, noteText);
+            Task t = list.CreateTask(++maxTaskId, title, dueDate, labels, noteText);
             Save();
             return t;
         }
@@ -129,7 +128,7 @@ namespace TodoApplicationLibrary
         public void DeleteTask(TaskList list, int taskId)
         {
             if (list == null) throw new TaskManagerException("Failed delete task: " + taskId);
-            if(list.isContains(taskId))
+            if(list.IsContains(taskId))
             {
                 list.DeleteTask(taskId);
                 Save();
@@ -139,11 +138,11 @@ namespace TodoApplicationLibrary
             }
         }
 
-        public TaskList FindDefaultTaskList() {
+        public TaskList? FindDefaultTaskList() {
             return defaultTaskList;
         }
 
-        public void SortTaskList(TaskList taskList, TaskOrder taskOrder)
+        public static void SortTaskList(TaskList taskList, TaskOrder taskOrder)
         {
             switch(taskOrder) {
                 case TaskOrder.CreateDate:
@@ -176,7 +175,7 @@ namespace TodoApplicationLibrary
                 }
                 for (int i = 0; i < t.Count; i++)
                 {
-                    if(t[i].Id > maxTaskId)
+                    if(t[i]?.Id > maxTaskId)
                     {
                         maxTaskId = t[i].Id;
                     }
@@ -198,7 +197,7 @@ namespace TodoApplicationLibrary
 
         private static bool SortTaskByStatus(Task? task1, Task? task2)
         {
-            if(task1.State == TaskState.DONE && task2.State == TaskState.INCOMPLETE)
+            if(task1?.State == TaskState.DONE && task2?.State == TaskState.INCOMPLETE)
             {
                 return true;
             }

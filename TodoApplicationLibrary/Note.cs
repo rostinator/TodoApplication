@@ -18,7 +18,7 @@ namespace TodoApplicationLibrary
             }
             set {
                 text = value;
-                EditDate = TaskManager.TimeZone.ToLocalTime(DateTime.Now);
+                EditDate = TimeZone.CurrentTimeZone.ToLocalTime(DateTime.Now);
             }
         }
 

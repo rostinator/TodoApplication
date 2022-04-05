@@ -38,6 +38,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
@@ -45,12 +46,13 @@
             this.tableLayoutPanel1.Controls.Add(this.infoMessageLabel, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 165);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(529, 124);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // button1
@@ -60,10 +62,9 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(563, 4);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Location = new System.Drawing.Point(492, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 32);
+            this.button1.Size = new System.Drawing.Size(34, 24);
             this.button1.TabIndex = 1;
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -77,10 +78,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial Unicode MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(200, 105);
-            this.button2.Margin = new System.Windows.Forms.Padding(200, 0, 200, 0);
+            this.button2.Location = new System.Drawing.Point(175, 79);
+            this.button2.Margin = new System.Windows.Forms.Padding(175, 0, 175, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(205, 40);
+            this.button2.Size = new System.Drawing.Size(179, 30);
             this.button2.TabIndex = 2;
             this.button2.Text = "OK";
             this.button2.UseVisualStyleBackColor = false;
@@ -91,23 +92,24 @@
             this.infoMessageLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.infoMessageLabel.Font = new System.Drawing.Font("Arial Unicode MS", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.infoMessageLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.infoMessageLabel.Location = new System.Drawing.Point(3, 50);
-            this.infoMessageLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.infoMessageLabel.Location = new System.Drawing.Point(3, 38);
+            this.infoMessageLabel.Margin = new System.Windows.Forms.Padding(3, 8, 3, 0);
             this.infoMessageLabel.Name = "infoMessageLabel";
-            this.infoMessageLabel.Size = new System.Drawing.Size(599, 31);
+            this.infoMessageLabel.Size = new System.Drawing.Size(523, 25);
             this.infoMessageLabel.TabIndex = 3;
             this.infoMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // InfoDialogForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.ClientSize = new System.Drawing.Size(605, 165);
+            this.ClientSize = new System.Drawing.Size(529, 124);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "InfoDialogForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "InfoDialogForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

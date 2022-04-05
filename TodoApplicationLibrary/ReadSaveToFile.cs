@@ -16,22 +16,22 @@ namespace TodoApplicationLibrary
 
         internal void SaveTasks(List<TaskList> taskLists)
         {
-            using(FileStream dataStream = new FileStream(FILE_NAME, FileMode.OpenOrCreate))
+            using(FileStream dataStream = new(FILE_NAME, FileMode.OpenOrCreate))
             {
-                BinaryFormatter formatter = new BinaryFormatter();
+                BinaryFormatter formatter = new();
 
                 formatter.Serialize(dataStream, taskLists);
                 
             }
         }
 
-        internal List<TaskList> ReadTasks()
+        internal List<TaskList>? ReadTasks()
         {
             if (!File.Exists(FILE_NAME)) return null;
                 
-            using (FileStream dataStream = new FileStream(FILE_NAME, FileMode.Open))
+            using (FileStream dataStream = new(FILE_NAME, FileMode.Open))
             {
-                BinaryFormatter formatter = new BinaryFormatter();
+                BinaryFormatter formatter = new();
 
                 return (List<TaskList>)formatter.Deserialize(dataStream);
 

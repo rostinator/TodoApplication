@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,21 +22,21 @@ namespace TodoApplicationLibrary
         {
             get
             {
-                return Enum.GetValues(typeof(TaskOrder)).Cast<TaskOrder>(); ;
+                return Enum.GetValues(typeof(TaskOrder)).Cast<TaskOrder>();
             }
         }
 
         public static string GetName(TaskOrder taskOrder)
         {
-            switch (taskOrder)
+            return taskOrder switch
             {
-                case TaskOrder.None: return "-";
-                case TaskOrder.CreateDate: return "Create date";
-                case TaskOrder.DueDate: return "Due date";
-                case TaskOrder.Status: return "Status";
-                case TaskOrder.Alphabed: return "A - Z";
-                default: return string.Empty;
-            }
+                TaskOrder.None => "-",
+                TaskOrder.CreateDate => "Create date",
+                TaskOrder.DueDate => "Due date",
+                TaskOrder.Status => "Status",
+                TaskOrder.Alphabed => "A - Z",
+                _ => string.Empty,
+            };
         }
     }
 }
